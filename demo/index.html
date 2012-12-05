@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>circles</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/css.css"></style>
+		<script type="text/javascript" src="js/Main.js"></script>
+		<script type="text/javascript" src="js/js.js"></script>
+	</head>
+	<body>
+
+		<div class="my-legend">
+			<fieldset>
+				<input id="clear-on-repaint" type="checkbox" checked="checked" /> <label for="clear-on-repaint">clear on repaint</label><br />
+				<input id="show-center" type="checkbox" checked="checked" /> <label for="show-center">show center</label><br />
+			</fieldset>
+			<br />
+			<fieldset>
+				<label class="small" for="line-width">line width:</label> <input id="line-width" type="text" value="1" class="input-number" /><br />
+			</fieldset>
+			<fieldset>
+				<label class="small" for="number-of-circles"># of circles:</label> <input id="number-of-circles" type="text" value="5" class="input-number" /><br />
+			</fieldset>
+			<br />
+			<fieldset>
+				<label class="smaller">Z:</label> zoom out<br />
+				<label class="smaller">X:</label> zoom in<br />
+			</fieldset>
+			<br />
+			<fieldset>
+				<button id="bt-start">start</button>
+				<button id="bt-stop" disabled="disabled">stop</button>
+				<button id="bt-restart" disabled="disabled">restart</button>
+			</fieldset>
+		</div>
+
+		<canvas width="600" height="600"></canvas>
+
+		<div class="my-legend">
+		</div>
+
+	</body>
+</html>
