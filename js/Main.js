@@ -1,18 +1,31 @@
-function Main(canvasId) {
+function Main() {
+
 	Main.MAIN_DELAY = 1000 / 60;
 	Main._Z = 90;
 	Main._X = 88;
+
 	this.mainLoop = null;
 	this.canvas = document.querySelector('canvas');
-	this.scale = 1;
+
 	{
+		this.scale = 1;
 		this.clearOnRepaint = true;
 		this.showCenter = true;
 	}
+
+	(function(instance) {
+
+		btStart = document.getElementById('bt-start');
+		btStart.disabled = false;
+		btStart.addEventListener('click', function(evt) { this.disabled = true; instance.start(); }, true);
+
+		window.addEventListener('keydown', function(evt) { instance.doKeyDown(evt); }, true);
+
+	})(this);
+
 }
 
 Main.prototype.refresh = function() {
-	this.test();
 	this.checkControl();
 	var canvas = this.canvas;
 	var context = canvas.getContext('2d');
@@ -21,6 +34,17 @@ Main.prototype.refresh = function() {
 };
 
 Main.prototype.draw = function() {
+	var canvas = this.canvas;
+	var left = Math.round(canvas.width / 2);
+	var top = Math.round(canvas.height / 2);
+	var context = canvas.getContext('2d');
+	context.save();
+	context.lineWidth = 1;
+	context.beginPath();
+	context.arc(left, top, 20, 0, 2*Math.PI, false);
+	context.strokeStyle = 'black';
+	context.stroke();
+	context.restore();
 };
 
 Main.prototype.checkControl = function() {
@@ -54,11 +78,3 @@ Main.prototype.doKeyDown = function(evt) {
 		evt.preventDefault();
 	}
 }
-
-Main.prototype.doKeyUp = function(evt) {
-	var key = evt.keyCode;
-}
-
-Main.prototype.test = function() {
-	console.log(this);
-};
