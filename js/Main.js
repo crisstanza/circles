@@ -8,6 +8,8 @@ function Main() {
 	this.canvas = document.querySelector('canvas');
 
 	{
+		this.lineWidth = 1;
+		this.numberOfCircles = 1;
 		this.scale = 1;
 		this.clearOnRepaint = true;
 		this.showCenter = true;
@@ -37,12 +39,14 @@ Main.prototype.draw = function() {
 	var canvas = this.canvas;
 	var left = Math.round(canvas.width / 2);
 	var top = Math.round(canvas.height / 2);
+	var radius = canvas.width / 4;
 	var context = canvas.getContext('2d');
 	context.save();
-	context.lineWidth = 1;
-	context.beginPath();
-	context.arc(left, top, 20, 0, 2*Math.PI, false);
+	context.lineWidth = this.lineWidth;
+	context.scale(this.scale, this.scale);
 	context.strokeStyle = 'black';
+	context.beginPath();
+	context.arc(left, top, radius, 0, 2*Math.PI, false);
 	context.stroke();
 	context.restore();
 };
@@ -50,10 +54,9 @@ Main.prototype.draw = function() {
 Main.prototype.checkControl = function() {
 	this.clearOnRepaint = document.getElementById('clear-on-repaint').checked;
 	this.showCenter = document.getElementById('show-center').checked;
-};
-
-Main.prototype.t = function(value) {
-	return value * this.scale;
+	this.scale = document.getElementById('zoom-level').value;
+	this.lineWidth = document.getElementById('line-width').value;
+	this.numberOfCircles = document.getElementById('number-of-circles').value;
 };
 
 Main.prototype.start = function() {
