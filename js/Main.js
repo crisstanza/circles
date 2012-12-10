@@ -11,6 +11,7 @@ function Main() {
 		this.lineWidth = 1;
 		this.numberOfCircles = 1;
 		this.scale = 1;
+		this.radius = 30;
 		this.clearOnRepaint = true;
 		this.showCenter = true;
 	}
@@ -39,14 +40,12 @@ Main.prototype.draw = function() {
 	var canvas = this.canvas;
 	var left = Math.round(canvas.width / 2);
 	var top = Math.round(canvas.height / 2);
-	var radius = canvas.width / 4;
 	var context = canvas.getContext('2d');
 	context.save();
 	context.lineWidth = this.lineWidth;
-	context.scale(this.scale, this.scale);
 	context.strokeStyle = 'black';
 	context.beginPath();
-	context.arc(left, top, radius, 0, 2*Math.PI, false);
+	context.arc(left, top, this.radius, 0, 2*Math.PI, false);
 	context.stroke();
 	context.restore();
 };
@@ -57,6 +56,7 @@ Main.prototype.checkControl = function() {
 	this.scale = document.getElementById('zoom-level').value;
 	this.lineWidth = document.getElementById('line-width').value;
 	this.numberOfCircles = document.getElementById('number-of-circles').value;
+	this.radius = document.getElementById('initial-radius').value * this.scale;
 };
 
 Main.prototype.start = function() {
